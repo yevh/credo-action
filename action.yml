@@ -1,0 +1,22 @@
+name: 'Credo Action'
+description: 'Runs credo and converts output to SARIF'
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Setup Elixir
+      uses: erlef/setup-beam@v1
+      with:
+        otp-version: '24'
+        elixir-version: '1.12'
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
+    - name: Run script
+      run: |
+        chmod +x ./scripts/credo_to_sarif.sh
+        ./scripts/credo_to_sarif.sh
+      shell: bash
