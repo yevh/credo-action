@@ -8,5 +8,5 @@ steps:
   uses: actions/checkout@v2
 
 - name: Run Credo Action
-  uses: username/CredoAction@v1  # Replace with actual version
+  uses: yevh/CredoAction@v1
 ```
